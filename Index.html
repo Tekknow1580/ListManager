@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/Style.css">
+    <title>List Manager</title>
 </head>
 <body>
-    <input id="input">
-    <button onclick="Add()">Add New</button>
-    <button onclick="Remove()">Remove Last</button>
-    <button onclick="RemoveAll()">Remove All</button>
-    <p id="Output"></p>
-    <ol id="List">
-    </ol>
-    <script lang="JavaScript" src="Index.js"></script>
+    <div class="Menu">
+        <input id="Input" onkeydown="InputEnter(event)">
+        <button id="Add" onclick="Add(document.getElementById('Input').value)">Add New</button>
+        <button onclick="RemoveLast()">Remove Last</button>
+        <button onclick="RemoveAll()">Remove All</button>
+    </div>
+    <br>
+    <div class="List">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">List</th>
+                </tr>
+            </thead>
+            <tbody id="List">
+
+            </tbody>
+        </table>
+        <script lang="JavaScript" src="Main.js"></script>
+    </div>
 </body>
 </html>

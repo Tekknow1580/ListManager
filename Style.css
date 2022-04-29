@@ -1,0 +1,15 @@
+table,
+td {
+    border: 1px solid #333;
+}
+
+.Remove
+{
+    background-color: white;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
