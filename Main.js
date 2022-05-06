@@ -1,17 +1,15 @@
-var Items = [];
+var Users = [];
 var RSkip = true;
 
 (function InsisulaiseItems() 
 {
-    Items = localStorage.getItem("Items");
-    if (Items == null)
-        Items = [];
-    else
-        Items = Items.split(',');
+    Users = JSON.parse(localStorage.getItem("Items"));
+    if (Users == null)
+        Users = [];
 
     RSkip = true;
-    Items.forEach(element => {
-        Add(element);
+    Users.forEach(element => {
+        Add(element.name, new Date(element.dateCreated));
     });
     RSkip = false;
 })();
@@ -20,35 +18,43 @@ function InputEnter(event)
 {
     if (event.key === "Enter") 
     {
-    // Cancel the default action, if needed
     event.preventDefault();
-    // Trigger the button element with a click
     document.getElementById("Add").click();
     }
 }
 
-function Add(Input) 
+function Add(Input, DateCreated) 
 {
-    //var Input = document.getElementById("input").value;
     if (Input == "")
         return;
+
+
+        let item = {};
+
+        item.name = Input;
+        item.dateCreated = new Date().toString();
 
     var BTN = document.createElement("button");
     var Row = document.createElement("tr");
     var CItem = document.createElement("td");
-    var CBTN = document.createElement("td");
+    var CDate = document.createElement("td");
 
     BTN.id = Input;
     BTN.className = "Remove";
     BTN.innerHTML = "X";
     BTN.onclick = Remove;
 
-    CBTN.appendChild(BTN);
+    DateCreated = 
+    `${DateCreated.getDay() + 1}/${DateCreated.getMonth() + 1}/${DateCreated.getFullYear()}
+    ${DateCreated.getHours()}:${DateCreated.getMinutes()}`; 
+
+    CDate.innerHTML = DateCreated;
 
     CItem.innerHTML = "● \t " + Input;
     CItem.id = "Item";
 
     Row.appendChild(CItem);
+    Row.appendChild(CDate);
     Row.appendChild(BTN);
     Row.id = Input;
 
@@ -56,23 +62,23 @@ function Add(Input)
     document.getElementById("Input").value = "";
     if (RSkip)
         return
-    Items.push(Input);
-    localStorage.setItem("Items", Items);
+    Users.push(item);
+    localStorage.setItem("Items", JSON.stringify(Users));
 }
 
 function RemoveLast() 
 {
     var List = document.getElementById("List");
     List.removeChild(List.lastElementChild);
-    Items.pop();
-    localStorage.setItem("Items", Items);
+    Users.pop();
+    localStorage.setItem("Items", Users);
 }
 
 function RemoveAll()
 {
     document.getElementById("List").innerHTML = "";
-    Items = [];
-    localStorage.setItem("Items", Items);
+    Users = [];
+    localStorage.setItem("Items", Users);
 }
 
 function Remove(Item)
@@ -80,9 +86,9 @@ function Remove(Item)
     Item = Item.srcElement.id;
     var List = document.getElementById("List");
     List.removeChild(List.children[Item]);
-    const index = Items.indexOf(Item);
+    const index = Users.indexOf(Item);
     if (index > -1) {
-      Items.splice(index, 1);
+      Users.splice(index, 1);
     }
-    localStorage.setItem("Items", Items);
+    localStorage.setItem("Items", Users);
 }
