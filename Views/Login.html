@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/Style.css">
+    <script lang="JavaScript" src="/static/Login.js"></script>
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="Main-View">
+        <div class="Content">
+            <div class="PNL">
+                <div>User Name</div>
+                <input id="UserName" name="UserName">
+                <br>
+                <div>Password</div>
+                <input id="Password" name="Password" type="password">
+            </div>
+            <div>
+                <br>
+                <input id="RMEM" name="RMEM" type="checkbox">
+                Remember Me
+            </div>
+            <div>
+                <p id="MSG" style="color: red;"></p>
+                <button class="BTN" onclick="LogIn(document.getElementById('UserName').value,
+                document.getElementById('Password').value,
+                document.getElementById('RMEM').checked)">Sign In</button>
+
+                <button class="BTN" onclick="SingUp(document.getElementById('UserName').value,
+                document.getElementById('Password').value,
+                document.getElementById('RMEM').checked)">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

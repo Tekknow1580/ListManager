@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/Style.css">
+    <title>List Manager</title>
+</head>
+
+<body>
+    <label id="TimeDesplay">00:00:00</label>
+    <div class="TopBar">
+        <button class="btnLink" onclick="DelList()">Delete Account</button>
+        <button class="btnLink" onclick="SignOut()">Sign Out</button>
+    </div>
+    <div class="Menu">
+        <div id="MenuTop">-Input-</div>
+        <input id="Input" onkeydown="InputEnter(event)" style="width: 97%;">
+        <br>
+        <button id="Add" onclick="Add(
+            document.getElementById('Input').value, 
+            new Date())">
+            Add New
+        </button>
+        <button onclick="RemoveLast()">Remove Last</button>
+        <button onclick="RemoveAll()">Remove All</button>
+        <button onclick="SortOrder()" id="btnSort">Sort DECS</button>
+    </div>
+    <br>
+    <div class="List">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">List</th>
+                </tr>
+            </thead>
+            <tbody id="List">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script lang="JavaScript" src="/static/Main.js"></script>
+
+</html>
